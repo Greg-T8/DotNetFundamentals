@@ -1,0 +1,72 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"languageName":"csharp","name":"csharp"}]}}
+
+#!markdown
+
+# Working with variables
+The following code block shows an example of declaring a variable and assigning it. The `nameof` keyword and the `$` symbol were introduced in C#6 (2015) and are used to indicate an interpolated string.  An interpolated string is a literal string prefixed with `$` to enable embedded formatted variables. 
+
+#!csharp
+
+// let the heightInMeters variable be equal to 1.88
+double heightInMeters = 1.88;
+Console.WriteLine($"The variable {nameof(heightInMeters)} has the value {heightInMeters}.");
+
+#!markdown
+
+# Storing text
+A single letter such as `A` is stored as a `char` type.  Sometimes items need two char values: the Egyptian Hieroglyph A002 (U+13001) is one example that uses `\uD80C` and `\uDC01`.  Here are some examples of chars.
+
+#!csharp
+
+ char letter = 'A'; // assigning literal characters
+ char digit = '1';
+ char symbol = '$';
+ char userChoice = GetSomeKeystroke(); // assigning from a fictitious function
+
+#!markdown
+
+Text with multipe letters are stored as a `string` type with double quotes around the literal value.
+
+#!csharp
+
+string firstName = "Bob";
+string lastName = "Smith";
+string phoneNumber = "(215) 555-4256";
+
+// assigning a string returend from the string class constructor
+string horizontalLine = new('-', count: 74); // 74 hyphens
+
+// assigning a string returned from a fictitious function
+string address = GetAddressFromDatabase(id: 563);
+
+// assigning an emoji by converting from Unicode
+string grinningEmoji = char.ConvertFromUtf32(0x1F600);
+
+#!markdown
+
+To output an emoji you must set the output encoding to use UTF-8.
+
+#!csharp
+
+Console.OutputEncoding = System.Text.Encoding.UTF8;
+string grinningEmoji = char.ConvertFromUtf32(0x1F600);
+Console.WriteLine(grinningEmoji);
+
+#!markdown
+
+## Verbatim strings
+When storing text in a `string` you can use escape sequences, such as `\t` to insert a tab.
+
+#!csharp
+
+string fullNameWithTabSeparator = "Bob\tSmith";
+
+#!markdown
+
+But in cases where a string includes an escape character, such as `C:\televisions`, you must prefix the string with the `@` symbol.  This is a verbatim string.
+
+#!csharp
+
+string filePath = @"C:\televisions\sony\bravia.txt";
